@@ -1,41 +1,134 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { RiSupabaseFill } from "react-icons/ri";
+/**
+ * @file app/page.tsx
+ * @description 홈페이지 - 관광지 목록
+ *
+ * 한국관광공사 Tour API를 활용한 관광지 목록 페이지입니다.
+ * 검색, 필터, 관광지 목록, 지도 기능을 포함합니다.
+ *
+ * 주요 기능:
+ * - 관광지 목록 표시 (Phase 2.2) ✅
+ * - 필터 기능 (지역, 타입, 반려동물) (Phase 2.3)
+ * - 키워드 검색 (Phase 2.4)
+ * - 네이버 지도 연동 (Phase 2.5)
+ * - 페이지네이션 (Phase 2.6)
+ *
+ * @see {@link docs/PRD.md} - 기능 요구사항
+ * @see {@link docs/TODO.md} - Phase 2 작업 목록
+ */
 
-export default function Home() {
-  return (
-    <main className="min-h-[calc(100vh-80px)] flex items-center px-8 py-16 lg:py-24">
-      <section className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start lg:items-center">
-        {/* 좌측: 환영 메시지 */}
-        <div className="flex flex-col gap-8">
-          <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-            SaaS 앱 템플릿에 오신 것을 환영합니다
-          </h1>
-          <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed">
-            Next.js, Shadcn, Clerk, Supabase, TailwindCSS로 구동되는 완전한
-            기능의 템플릿으로 다음 프로젝트를 시작하세요.
-          </p>
-        </div>
+import { getAreaBasedList, TourApiError } from "@/lib/api/tour-api";
+import { TourList } from "@/components/tour-list";
+import { Error } from "@/components/ui/error";
 
-        {/* 우측: 버튼 두 개 세로 정렬 */}
-        <div className="flex flex-col gap-6">
-          <Link href="/storage-test" className="w-full">
-            <Button className="w-full h-28 flex items-center justify-center gap-4 text-xl shadow-lg hover:shadow-xl transition-shadow">
-              <RiSupabaseFill className="w-8 h-8" />
-              <span>Storage 파일 업로드 테스트</span>
-            </Button>
-          </Link>
-          <Link href="/auth-test" className="w-full">
-            <Button
-              className="w-full h-28 flex items-center justify-center gap-4 text-xl shadow-lg hover:shadow-xl transition-shadow"
-              variant="outline"
-            >
-              <RiSupabaseFill className="w-8 h-8" />
-              <span>Clerk + Supabase 인증 연동</span>
-            </Button>
-          </Link>
+export default async function HomePage() {
+  try {
+    // 기본 관광지 목록 조회 (전체 지역, 전체 타입, 수정일순)
+    const { items, totalCount } = await getAreaBasedList(
+      {
+        numOfRows: 20,
+        pageNo: 1,
+        arrange: "C", // 수정일순
+      },
+      true // 서버 사이드
+    );
+
+    return (
+      <main className="min-h-[calc(100vh-4rem)] py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* 검색 영역 - Phase 2.4에서 구현 */}
+          <section className="mb-6">
+            {/* tour-search.tsx 배치 예정 */}
+            <div className="h-16 bg-muted/50 rounded-lg flex items-center justify-center">
+              <p className="text-sm text-muted-foreground">
+                검색 영역 (Phase 2.4에서 구현 예정)
+              </p>
+            </div>
+          </section>
+
+          {/* 필터 영역 - Phase 2.3에서 구현 */}
+          <section className="mb-6">
+            {/* tour-filters.tsx 배치 예정 */}
+            <div className="h-20 bg-muted/50 rounded-lg flex items-center justify-center">
+              <p className="text-sm text-muted-foreground">
+                필터 영역 (Phase 2.3에서 구현 예정)
+              </p>
+            </div>
+          </section>
+
+          {/* 메인 콘텐츠 영역 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* 리스트 영역 (좌측 또는 상단) */}
+            <section className="lg:order-1">
+              <TourList tours={items} />
+            </section>
+
+            {/* 지도 영역 (우측 또는 하단) - Phase 2.5에서 구현 */}
+            <section className="lg:order-2">
+              {/* naver-map.tsx 배치 예정 */}
+              <div className="min-h-[600px] bg-muted/50 rounded-lg flex items-center justify-center">
+                <p className="text-sm text-muted-foreground">
+                  네이버 지도 영역 (Phase 2.5에서 구현 예정)
+                </p>
+              </div>
+            </section>
+          </div>
+
+          {/* 페이지네이션 영역 - Phase 2.6에서 구현 */}
+          <section className="mt-8">
+            {/* 페이지네이션 컴포넌트 배치 예정 */}
+            <div className="h-12 bg-muted/50 rounded-lg flex items-center justify-center">
+              <p className="text-sm text-muted-foreground">
+                페이지네이션 영역 (Phase 2.6에서 구현 예정) - 총 {totalCount}개
+              </p>
+            </div>
+          </section>
         </div>
-      </section>
-    </main>
-  );
+      </main>
+    );
+  } catch (error) {
+    // 에러 로깅 (개발 환경에서만)
+    if (process.env.NODE_ENV === 'development') {
+      console.error('관광지 목록 로딩 에러:', error);
+      
+      // TourApiError인 경우 상세 정보 출력
+      if (error instanceof Error) {
+        console.error('에러 메시지:', error.message);
+        console.error('에러 이름:', error.name);
+      }
+    }
+
+    // 에러 처리
+    let errorMessage = "관광지 목록을 불러오는 중 오류가 발생했습니다.";
+    
+    // TourApiError인 경우 상세 정보 표시
+    if (error instanceof TourApiError) {
+      if (error.message.includes('API key is missing')) {
+        errorMessage = "Tour API 키가 설정되지 않았습니다. .env 파일에 NEXT_PUBLIC_TOUR_API_KEY를 확인해주세요.";
+      } else if (error.message.includes('API error')) {
+        errorMessage = `API 오류: ${error.message.replace('API error: ', '')}`;
+      } else if (error.message.includes('Request timeout')) {
+        errorMessage = "요청 시간이 초과되었습니다. 잠시 후 다시 시도해주세요.";
+      } else {
+        errorMessage = error.message;
+      }
+    } else if (error instanceof Error) {
+      // 일반 Error인 경우
+      if (error.message.includes('Network error')) {
+        errorMessage = "네트워크 오류가 발생했습니다. 인터넷 연결을 확인해주세요.";
+      } else {
+        errorMessage = error.message;
+      }
+    }
+
+    return (
+      <main className="min-h-[calc(100vh-4rem)] py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Error
+            message={errorMessage}
+            fullScreen
+          />
+        </div>
+      </main>
+    );
+  }
 }

@@ -75,28 +75,28 @@
 
 ## Phase 2: 홈페이지 (`/`) - 관광지 목록
 
-- [ ] 페이지 기본 구조
-  - [ ] `app/page.tsx` 생성
-    - [ ] 기본 레이아웃 (헤더, 메인, 푸터)
-    - [ ] 반응형 컨테이너 설정
-- [ ] 관광지 목록 기능 (MVP 2.1)
-  - [ ] `components/tour-card.tsx` 생성
-    - [ ] 썸네일 이미지 (기본 이미지 fallback)
-    - [ ] 관광지명
-    - [ ] 주소 표시
-    - [ ] 관광 타입 뱃지
-    - [ ] 간단한 개요 (1-2줄)
-    - [ ] 호버 효과 (scale, shadow)
-    - [ ] 클릭 시 상세페이지 이동
-  - [ ] `components/tour-list.tsx` 생성
-    - [ ] 그리드 레이아웃 (반응형)
-    - [ ] 카드 목록 표시
-    - [ ] 로딩 상태 (Skeleton UI)
-    - [ ] 빈 상태 처리
-  - [ ] API 연동
-    - [ ] `getAreaBasedList()` 호출
-    - [ ] 데이터 파싱 및 표시
-    - [ ] 에러 처리
+- [x] 페이지 기본 구조
+  - [x] `app/page.tsx` 생성
+    - [x] 기본 레이아웃 (헤더, 메인, 푸터)
+    - [x] 반응형 컨테이너 설정
+- [x] 관광지 목록 기능 (MVP 2.1)
+  - [x] `components/tour-card.tsx` 생성
+    - [x] 썸네일 이미지 (기본 이미지 fallback)
+    - [x] 관광지명
+    - [x] 주소 표시
+    - [x] 관광 타입 뱃지
+    - [x] 간단한 개요 (1-2줄)
+    - [x] 호버 효과 (scale, shadow)
+    - [x] 클릭 시 상세페이지 이동
+  - [x] `components/tour-list.tsx` 생성
+    - [x] 그리드 레이아웃 (반응형)
+    - [x] 카드 목록 표시
+    - [x] 로딩 상태 (Skeleton UI)
+    - [x] 빈 상태 처리
+  - [x] API 연동
+    - [x] `getAreaBasedList()` 호출
+    - [x] 데이터 파싱 및 표시
+    - [x] 에러 처리
 - [ ] 필터 기능
   - [ ] `components/tour-filters.tsx` 생성
     - [ ] 지역 필터 (시/도 선택)

@@ -229,3 +229,4 @@ export const CONTENT_TYPE_NAMES: Record<ContentTypeId, string> = {
   [CONTENT_TYPE.RESTAURANT]: '음식점',
 };
 
+

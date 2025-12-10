@@ -47,3 +47,4 @@ export function TourCardListSkeleton({ count = 6 }: { count?: number }) {
   );
 }
 
+

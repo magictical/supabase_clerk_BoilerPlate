@@ -46,19 +46,16 @@ const BASE_URL = 'https://apis.data.go.kr/B551011/KorService2';
 
 /**
  * 공통 파라미터 가져오기
- * @param isServerSide - 서버 사이드인지 여부 (기본값: false)
+ * @param isServerSide - 서버 사이드인지 여부 (기본값: false, 현재는 사용하지 않음)
  * @returns 공통 파라미터 객체
  */
 function getCommonParams(isServerSide = false): Record<string, string> {
-  const serviceKey = isServerSide
-    ? process.env.TOUR_API_KEY
-    : process.env.NEXT_PUBLIC_TOUR_API_KEY;
+  // 서버/클라이언트 모두 NEXT_PUBLIC_TOUR_API_KEY 사용
+  const serviceKey = process.env.NEXT_PUBLIC_TOUR_API_KEY;
 
   if (!serviceKey) {
     throw new TourApiError(
-      `Tour API key is missing. Please check ${
-        isServerSide ? 'TOUR_API_KEY' : 'NEXT_PUBLIC_TOUR_API_KEY'
-      } environment variable.`
+      `Tour API key is missing. Please check NEXT_PUBLIC_TOUR_API_KEY environment variable.`
     );
   }
 
