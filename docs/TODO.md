@@ -31,47 +31,47 @@
 ## Phase 1: 기본 구조 & 공통 설정
 
 - [ ] 프로젝트 셋업
-  - [ ] 환경변수 설정 (`.env`)
-    - [ ] `NEXT_PUBLIC_TOUR_API_KEY` (한국관광공사 API)
-    - [ ] `TOUR_API_KEY` (서버 사이드용)
-    - [ ] `NEXT_PUBLIC_NAVER_MAP_CLIENT_ID` (네이버 지도)
-    - [ ] Clerk 인증 키 확인
-    - [ ] Supabase 키 확인
-  - [ ] `.env.example` 파일 생성
-- [ ] API 클라이언트 구현
-  - [ ] `lib/api/tour-api.ts` 생성
-    - [ ] `getAreaCode()` - 지역코드 조회 (`areaCode2`)
-    - [ ] `getAreaBasedList()` - 지역 기반 목록 (`areaBasedList2`)
-    - [ ] `searchKeyword()` - 키워드 검색 (`searchKeyword2`)
-    - [ ] `getDetailCommon()` - 공통 정보 (`detailCommon2`)
-    - [ ] `getDetailIntro()` - 소개 정보 (`detailIntro2`)
-    - [ ] `getDetailImage()` - 이미지 목록 (`detailImage2`)
-    - [ ] `getDetailPetTour()` - 반려동물 정보 (`detailPetTour2`)
-    - [ ] 공통 파라미터 처리 (serviceKey, MobileOS, MobileApp, \_type)
-    - [ ] 에러 처리 및 재시도 로직
-- [ ] 타입 정의
-  - [ ] `lib/types/tour.ts` 생성
-    - [ ] `TourItem` 인터페이스 (목록)
-    - [ ] `TourDetail` 인터페이스 (상세)
-    - [ ] `TourIntro` 인터페이스 (운영정보)
-    - [ ] `TourImage` 인터페이스 (이미지)
-    - [ ] `PetTourInfo` 인터페이스 (반려동물)
-  - [ ] `lib/types/stats.ts` 생성
-    - [ ] `RegionStats` 인터페이스
-    - [ ] `TypeStats` 인터페이스
-    - [ ] `StatsSummary` 인터페이스
-- [ ] 레이아웃 구조
-  - [ ] `app/layout.tsx` 업데이트
-    - [ ] 메타데이터 설정
-    - [ ] 헤더/푸터 구조 확인
-  - [ ] `components/Navbar.tsx` 업데이트
-    - [ ] 로고, 검색창, 로그인 버튼
-    - [ ] 네비게이션 링크 (홈, 통계, 북마크)
-- [ ] 공통 컴포넌트
-  - [ ] `components/ui/loading.tsx` - 로딩 스피너
-  - [ ] `components/ui/skeleton.tsx` - 스켈레톤 UI
-  - [ ] `components/ui/error.tsx` - 에러 메시지
-  - [ ] `components/ui/toast.tsx` - 토스트 알림 (shadcn/ui)
+  - [x] 환경변수 설정 (`.env`)
+    - [x] `NEXT_PUBLIC_TOUR_API_KEY` (한국관광공사 API)
+    - [x] `TOUR_API_KEY` (서버 사이드용)
+    - [x] `NEXT_PUBLIC_NAVER_MAP_CLIENT_ID` (네이버 지도)
+    - [x] Clerk 인증 키 확인
+    - [x] Supabase 키 확인
+  - [x] `.env.example` 파일 생성
+- [x] API 클라이언트 구현
+  - [x] `lib/api/tour-api.ts` 생성
+    - [x] `getAreaCode()` - 지역코드 조회 (`areaCode2`)
+    - [x] `getAreaBasedList()` - 지역 기반 목록 (`areaBasedList2`)
+    - [x] `searchKeyword()` - 키워드 검색 (`searchKeyword2`)
+    - [x] `getDetailCommon()` - 공통 정보 (`detailCommon2`)
+    - [x] `getDetailIntro()` - 소개 정보 (`detailIntro2`)
+    - [x] `getDetailImage()` - 이미지 목록 (`detailImage2`)
+    - [x] `getDetailPetTour()` - 반려동물 정보 (`detailPetTour2`)
+    - [x] 공통 파라미터 처리 (serviceKey, MobileOS, MobileApp, \_type)
+    - [x] 에러 처리 및 재시도 로직
+- [x] 타입 정의
+  - [x] `lib/types/tour.ts` 생성
+    - [x] `TourItem` 인터페이스 (목록)
+    - [x] `TourDetail` 인터페이스 (상세)
+    - [x] `TourIntro` 인터페이스 (운영정보)
+    - [x] `TourImage` 인터페이스 (이미지)
+    - [x] `PetTourInfo` 인터페이스 (반려동물)
+  - [x] `lib/types/stats.ts` 생성
+    - [x] `RegionStats` 인터페이스
+    - [x] `TypeStats` 인터페이스
+    - [x] `StatsSummary` 인터페이스
+- [x] 레이아웃 구조
+  - [x] `app/layout.tsx` 업데이트
+    - [x] 메타데이터 설정
+    - [x] 헤더/푸터 구조 확인
+  - [x] `components/Navbar.tsx` 업데이트
+    - [x] 로고, 검색창, 로그인 버튼
+    - [x] 네비게이션 링크 (홈, 통계, 북마크)
+- [x] 공통 컴포넌트
+  - [x] `components/ui/loading.tsx` - 로딩 스피너
+  - [x] `components/ui/skeleton.tsx` - 스켈레톤 UI
+  - [x] `components/ui/error.tsx` - 에러 메시지
+  - [x] `components/ui/toast.tsx` - 토스트 알림 (shadcn/ui)
 
 ## Phase 2: 홈페이지 (`/`) - 관광지 목록
 
